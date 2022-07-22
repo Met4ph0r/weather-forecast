@@ -32,7 +32,7 @@ async function getWeather(latitude, longitude){
 async function getLocation(){
     try{
     let place = document.getElementById("place").value
-    let request = "http://api.openweathermap.org/geo/1.0/direct?q="+place+"&appid=f76906f6e7ebc68e41290f0f0082a00b"
+    let request = "https://api.openweathermap.org/geo/1.0/direct?q="+place+"&appid=f76906f6e7ebc68e41290f0f0082a00b"
     let location = await (await fetch (request)).json()
 
     // console.log(location);
