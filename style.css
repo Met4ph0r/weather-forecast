@@ -44,6 +44,11 @@ input{
     border-radius: 10px 0 0 10px;
     box-shadow: 5px 5px 10px rgba(0,0,0,0.6), 3px 3px 5px rgb(187, 208, 248) inset;
     transition: ease-in-out 100ms;
+    text-transform: capitalize;
+}
+
+input::placeholder{
+    text-transform: none;
 }
 
 input:hover{
@@ -52,12 +57,13 @@ input:hover{
 }
 
 input:focus{
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.9);
     transform: translate(-1px, -1px);
     box-shadow: 5px 5px 10px rgba(0,0,0,0.6);
 }
 
-button{
+
+.btn{
   padding:15px;
   background-color: rgb(84, 137, 245);
   border: none;
@@ -71,12 +77,12 @@ button{
   user-select: none;
 }
 
-button:hover{
+.btn:hover{
     transform: translate(-1px, -2px);
     cursor: pointer;
 }
 
-button:active{
+.btn:active, .active{
     transform: translate(1px, 2px);
     box-shadow: 4px 4px 5px rgba(42, 42, 42, 0.6) inset ;
     transition: ease-in-out 150ms;
@@ -91,6 +97,10 @@ button:active{
 
 .weather-card > div{
     margin-top: 20px;
+}
+
+#weather{
+    text-transform: capitalize;
 }
 
 #temp{
