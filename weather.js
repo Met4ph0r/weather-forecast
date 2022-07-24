@@ -1,26 +1,17 @@
-// Google geolocation key AIzaSyCCBx7iHEc8GC145pbrOu-KZJNMbJrXhTw
-// OpenWeather API 59af7b8b7dd66b0e4011dc66c1c29214 , 6b4bfdf05d0816386e630c28378a9c3b
-
-toggleCase = str => {
-    return str.toLowerCase().split(' ').map(function(word) {
-      return (word.charAt(0).toUpperCase() + word.slice(1));
-    }).join(' ');
-}
-
 async function getWeather(latitude, longitude){
     try {
-        // let request = "http://api.weatherapi.com/v1/current.json?q="+latitude+","+longitude+"&key=ac07107c937c4f8388f92519222207"
         let request = "https://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&appid=f76906f6e7ebc68e41290f0f0082a00b"
         let weatherData = await (await fetch(request)).json()
-        console.log(weatherData)
 
-        // document.querySelector(".weather-card").style.animation="none";
-        // document.querySelector(".weather-card").style.animation="ease-out 600ms popup";
+        document.querySelector(".weather-card").style.animation="ease-out 600ms popup";
+        setTimeout(function (){
+                document.querySelector(".weather-card").style.animation="none";
+        }, 600
+        )
 
         document.getElementById("temp").innerText = (parseFloat(weatherData.main.temp) - 273.15).toFixed(2) + " °C"
         document.getElementById("humidity").innerText = weatherData.main.humidity + "%"
-        
-        document.getElementById("weather").innerText = toggleCase(weatherData.weather[0].description)
+        document.getElementById("weather").innerText = weatherData.weather[0].description
 
     } catch (error) {
         console.log("Could not get temperature")
@@ -35,7 +26,9 @@ async function getLocation(){
     let request = "https://api.openweathermap.org/geo/1.0/direct?q="+place+"&appid=f76906f6e7ebc68e41290f0f0082a00b"
     let location = await (await fetch (request)).json()
 
-    // console.log(location);
+    document.getElementById("place").value = ""
+
+    // If the "state" for a city is not found
     if(location[0].state == undefined)
         location[0].state = location[0].name
     document.getElementById("city").innerText = location[0].name + ", " + location[0].state + ", " + location[0].country 
@@ -51,6 +44,23 @@ async function getLocation(){
     }
 }
 
+window.addEventListener("keydown", function (event) {  
+        if (event.key== "Enter") {
+                event.preventDefault();
+                document.querySelector(".btn").classList.add("active");
+        }
+});
+
+window.addEventListener("keyup", function (event) {  
+        if (event.key== "Enter") {
+                event.preventDefault();
+                document.querySelector(".btn").classList.remove("active");
+                // document.querySelector(".parent").style.background = "url(./assets/lightning.jpg)"
+                // document.querySelector(".parent").style.background = "url(./assets/clear.jpg)"
+                // document.querySelector(".parent").style.background = "url(./assets/imageedit_1_9445920538.png)"
+                getLocation();
+        }
+});
 
 setCurrentDate = () => {
     const d = new Date();
