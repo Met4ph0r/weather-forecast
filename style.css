@@ -2,7 +2,8 @@
 body{
     /* display: flex;
     flex-flow: column; */
-    background-color: royalblue;
+    /* background-color: royalblue; */
+    background: url("./assets/background/simple-4781.jpg");
     font-size: 30px;
     font-family: 'Comfortaa', cursive;
     font-weight: 600;
@@ -33,7 +34,7 @@ body{
 }
 
 input{
-    background-color: rgba(222, 229, 251, 0.956);
+    background-color: rgba(235, 248, 255, 0.956);
     padding-inline: 20px;
     border: none;
     outline: none;
